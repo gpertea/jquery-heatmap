@@ -4,7 +4,7 @@ JQuery Heatmap Plugin
 Easy heatmap-style background-coloring for HTML elements.
 
 **Note:** this is entirely the great work of David Larsen: https://github.com/DLarsen/jquery-hottie
-I only renamed it (sorry, David) and added a few minor features that I needed for my own use cases.
+ I only renamed it (sorry, David, the original name was a bit too.. "hot" :) ) and added a few minor features that I needed for my own use cases.
 
 In its most simple form, this plugin parses the html contents of the selected elements and parses them as floats.
 
@@ -64,7 +64,7 @@ If you want to split and "position" the color gradients around on a specific val
 This option is specifically designed for bicolor heat maps when the values are not symmetrically distributed
 around a "neutral" ("center") value. For example if we have negative and positive values and we want the negative
 values to be shaded in red and positive values shaded in green, this can be accomplished by using 
-3 colors in colorArray, with the "neautral" color in the middle (usually a neutral light gray color).
+3 colors in colorArray, with the "neutral" color in the middle (usually a light gray color).
 
     $("#myTable td").heatmapper({
       centerVal : 0,
