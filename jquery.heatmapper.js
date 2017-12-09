@@ -1,6 +1,6 @@
 ;(function($) {
 
-  $.fn.hottie = function(options) {
+  $.fn.heatmapper = function(options) {
 
     var plugin = $(this);
     
@@ -16,18 +16,44 @@
         }
         $(this).data('val', val);
       });
-
-      var range = max - min;
-      plugin.each(function() {
-        var val = $(this).data('val');
-        var c = settings.nullColor;
-        if (val != null && !isNaN(val) && range != 0) {
-          var adj = val - min;
-          var pct = 1.0 * adj / range;
-          c = getColor(pct);
-        }
-        $(this).css('background-color', c);
-      });
+      if (settings.centerVal == null) {
+        var range = max - min;
+        plugin.each(function() {
+          var val = $(this).data('val');
+          var c = settings.nullColor;
+          if (val != null && !isNaN(val) && range != 0) {
+            var adj = val - min;
+            var pct = 1.0 * adj / range;
+            c = getColor(pct);
+          }
+          $(this).css('background-color', c);
+        });
+      } else {
+        //use center value to center the color gradient
+        //must have min <= centerVal <= max
+        var range1 = settings.centerVal - min;
+        var range2 = max - settings.centerVal;
+        //split colorArray in half
+        halfcol=Math.ceil(settings.colorArray.length / 2);
+        var colorsLo=settings.colorArray.slice(0, halfcol);
+        var colorsHi=settings.colorArray.slice(-halfcol);
+        plugin.each(function() {
+          var val = $(this).data('val');
+          var c = settings.nullColor;
+          if (val != null && !isNaN(val)) {
+            if (val<settings.centerVal) {
+               var adj = val - min;
+               var pct = 1.0 * adj / range1;
+               c = getColorFrom(pct, colorsLo);
+            } else { //val>=settings.centerVal
+               var adj = val - settings.centerVal;
+               var pct = 1.0 * adj / range2;
+               c = getColorFrom(pct, colorsHi);
+            }
+          }
+          $(this).css('background-color', c);
+        });
+      }
     };
 
     var settings = {
@@ -36,7 +62,8 @@
       },
       preMin : 0,
       preMax : 0,
-      colorArray : [ 
+      centerVal : null, 
+      colorArray : [
         "#2E3436",
         "#384471",
         "#4a538a",
@@ -134,29 +161,39 @@
       }
 
       var getColor = function(percent){
-        
-      if (percent == null)
-        return nullColor;
+        if (percent == null)
+          return nullColor;
+        var colors = settings.colorArray.length;
+        var colorPosition = (percent * (colors - 1));
+        var sIndex = Math.floor(colorPosition);
+        sIndex = Math.min(colors - 2, sIndex);
+        var s = settings.colorArray[sIndex];
+        var e = settings.colorArray[sIndex+1];
+        var sHSL = rgbToHsv(hex2num(s));
+        var eHSL = rgbToHsv(hex2num(e));
+        var interiorPercent = (percent * (colors - 1)) - sIndex;
+        var hsvResult = transition3(interiorPercent, 1, sHSL, eHSL);
+        var dispRGB = hsvToRgb(hsvResult);
+        return num2hex(dispRGB);
+      };
+      
+      var getColorFrom = function(percent, colarray){
+        if (percent == null)
+          return nullColor;
+        var colors = colarray.length;
+        var colorPosition = (percent * (colors - 1));
+        var sIndex = Math.floor(colorPosition);
+        sIndex = Math.min(colors - 2, sIndex);
+        var s = colarray[sIndex];
+        var e = colarray[sIndex+1];
+        var sHSL = rgbToHsv(hex2num(s));
+        var eHSL = rgbToHsv(hex2num(e));
+        var interiorPercent = (percent * (colors - 1)) - sIndex;
+        var hsvResult = transition3(interiorPercent, 1, sHSL, eHSL);
+        var dispRGB = hsvToRgb(hsvResult);
+        return num2hex(dispRGB);
+      };
 
-      var colors = settings.colorArray.length;
-
-      var colorPosition = (percent * (colors - 1));
-      var sIndex = Math.floor(colorPosition);
-      sIndex = Math.min(colors - 2, sIndex);
-
-      var s = settings.colorArray[sIndex];
-      var e = settings.colorArray[sIndex+1];
-
-      var sHSL = rgbToHsv(hex2num(s));
-      var eHSL = rgbToHsv(hex2num(e));
-
-      var interiorPercent = (percent * (colors - 1)) - sIndex;
-
-      var hsvResult = transition3(interiorPercent, 1, sHSL, eHSL);
-
-      var dispRGB = hsvToRgb(hsvResult);
-      return num2hex(dispRGB);
-    };
 
     function transition(value, maximum, start_point, end_point){
       var r = start_point + (end_point - start_point)*value/maximum
@@ -194,7 +231,4 @@
     }
 
 })(jQuery);
-
-
-
 

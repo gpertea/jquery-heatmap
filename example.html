@@ -1,8 +1,7 @@
 <!doctype html>
 <head>
-<!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>-->
-<script src="jquery.js"></script>
-<script src="jquery.hottie.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="jquery.heatmapper.js"></script>
 
 <style>
 ul {clear: both; margin-top: 20px; list-style: none; height: 40px;}
@@ -84,15 +83,15 @@ ul li { padding: 4px; }
 <script>
   $(function(){
 
-    $("#test1 li").hottie();
+    $("#test1 li").heatmapper();
 
-    $("#test2 li").hottie({
+    $("#test2 li").heatmapper({
       readValue : function(e) {
         return $(e).attr("data-hist");
       }
     });
 
-    $("#test3 li").hottie({
+    $("#test3 li").heatmapper({
       colorArray : [ 
         "#000000",
         "#bb0000",
