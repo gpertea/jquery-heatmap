@@ -62,7 +62,7 @@ High order values correspond to high values.
 
 If you want to split ( "center" ) multi-color gradients around a specific value, the **centerVal** option can be used.
 This option is specifically designed for bicolor heat maps when the values are not symmetrically distributed
-around a "neutral" ("center") value. For example if we have negative and positive values and we want the negative
+around the desired neutral ("center") value. For example if we have negative and positive values and we want the negative
 values to be shaded in red and positive values shaded in green, this can be accomplished by using 
 3 colors in colorArray, with the "neutral" color in the middle (usually a light gray color).
 
@@ -75,5 +75,5 @@ values to be shaded in red and positive values shaded in green, this can be acco
       ]
     });
 
-Another example: for ratio values, ```centerVal``` should be set to 1.
+Another example: for ratio values, ```centerVal``` would be set to 1.
 
