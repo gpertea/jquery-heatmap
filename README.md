@@ -4,7 +4,7 @@ JQuery Heatmap Plugin
 Easy heatmap-style background-coloring for HTML elements.
 
 **Note:** this is entirely the great work of David Larsen: https://github.com/DLarsen/jquery-hottie
- I only renamed it (sorry, David, the original name was a bit too.. "hot" :) ) and added a few minor features that I needed for my own use cases.
+ I only renamed it to sound a bit less.. naughty (sorry, David) and added a few minor features that I needed for my own use cases.
 
 In its most simple form, this plugin parses the html contents of the selected elements and parses them as floats.
 
@@ -41,7 +41,7 @@ which tells the plug-in how to retrieve the numeric value.
     }
     });
 
-You can also pass in a color scheme as an array.  Low order colors correspond to low values.  
+You can also pass in a color scheme as an array. Low order colors correspond to low values.  
 High order values correspond to high values.
 
     <table id="myTable">
@@ -61,8 +61,8 @@ High order values correspond to high values.
 
 
 If you want to split ( "center" ) multi-color gradients around a specific value, the **centerVal** option can be used.
-This option is specifically designed for bicolor heat maps when the values are not symmetrically distributed
-around the desired neutral ("center") value. For example if we have negative and positive values and we want the negative
+This option is specifically designed for bicolor heat maps when the values are often asymmetrically distributed
+around a neutral value. For example if we have negative and positive values and we want the negative
 values to be shaded in red and positive values shaded in green, this can be accomplished by using 
 3 colors in colorArray, with the "neutral" color in the middle (usually a light gray color).
 
@@ -75,5 +75,5 @@ values to be shaded in red and positive values shaded in green, this can be acco
       ]
     });
 
-Another example: for ratio values, ```centerVal``` would be set to 1.
+Another example: for presenting ratio values ```centerVal``` would be set to 1.
 
