@@ -1,0 +1,107 @@
+<!doctype html>
+<head>
+<meta charset="utf-8"/>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="jquery.heatmapper.js"></script>
+
+<style>
+ul {clear: both; margin-top: 20px; list-style: none; height: 40px;}
+ul li { float: left; display: block;  line-height: 40px;}
+ul#test1 li { width: 40px; }
+ul li { padding: 4px; }
+</style>
+
+</head>
+
+<body>
+
+<ul id="test1">
+  <li>01</li>
+  <li>02</li>
+  <li>03</li>
+  <li>04</li>
+  <li>05</li>
+  <li>06</li>
+  <li>07</li>
+  <li>08</li>
+  <li>09</li>
+  <li>10</li>
+  <li>11</li>
+  <li>12</li>
+  <li>13</li>
+  <li>14</li>
+  <li>15</li>
+  <li>16</li>
+  <li>17</li>
+  <li>18</li>
+  <li>19</li>
+  <li>20</li>
+  <li>21</li>
+  <li>22</li>
+  <li>23</li>
+  <li>24</li>
+  <li>25</li>
+  <li>26</li>
+
+</ul>
+
+<ul id="test2">
+
+  <li data-hist="1.1">Alabama</li>
+  <li data-hist="1.2">Alaska</li>
+  <li data-hist="1.3">Arizona</li>
+  <li data-hist="2.1">Arkansas</li>
+  <li data-hist="2.4">California</li>
+  <li data-hist="2.8">Colorado</li>
+  <li data-hist="2.9">Connecticut</li>
+
+</ul>
+
+<ul id="test3">
+  <li>1</li>
+  <li>2</li>
+  <li>3</li>
+  <li>4</li>
+  <li>5</li>
+  <li>6</li>
+  <li>7</li>
+  <li>8</li>
+  <li>9</li>
+  <li>10</li>
+  <li>11</li>
+  <li>12</li>
+  <li>13</li>
+  <li>14</li>
+  <li>15</li>
+  <li>16</li>
+  <li>17</li>
+  <li>18</li>
+  <li>19</li>
+  <li>20</li>
+</ul>
+
+
+<script>
+  $(function(){
+
+    $("#test1 li").heatmapper();
+
+    $("#test2 li").heatmapper({
+      readValue : function(e) {
+        return $(e).attr("data-hist");
+      }
+    });
+
+    $("#test3 li").heatmapper({
+      colorArray : [ 
+        "#000000",
+        "#bb0000",
+        "#ffff00"
+      ]
+    });
+
+
+  });
+</script>
+</body>
+</html>

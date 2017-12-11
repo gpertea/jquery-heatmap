@@ -1,106 +1,106 @@
-<!doctype html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="jquery.heatmapper.js"></script>
+<meta charset="utf-8"/>
+<title>nr Aminoacid Frequencies</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" type="text/javascript"></script>
+<script src="jquery.heatmapper.js" type="text/javascript"></script>
+<style type="text/css">
+.body {
+  background-color: #EEF;
+  font-size: 0.9em; 
+  margin: 0 4px;
+  width: auto;
+}
 
-<style>
-ul {clear: both; margin-top: 20px; list-style: none; height: 40px;}
-ul li { float: left; display: block;  line-height: 40px;}
-ul#test1 li { width: 40px; }
-ul li { padding: 4px; }
+#rtable {
+ width: 100%;
+ margin: 6px auto;
+ color: #444;
+ font-size: 0.95em;
+ text-align:left;
+ border-collapse: collapse;
+ border: 1px solid #fff;
+ border-spacing: 0;
+}
+
+#rtable th {
+ font-weight: normal;
+ background-color: #ccd5dc;
+ color: #020202;
+ border: 2px solid #fff;
+ padding: 2px .5em;
+ vertical-align: middle;
+ line-height: 2em;
+ text-align: center;
+}
+#rtable tr {
+ background-color: #ecece2;
+ border: 2px solid #fff;
+}
+
+#rtable td {
+ border: 2px solid #fff;
+ color:#040404;
+ padding:2px 2px;
+}
 </style>
+<script type="text/javascript">
+$(function(){
 
-</head>
-
-<body>
-
-<ul id="test1">
-  <li>01</li>
-  <li>02</li>
-  <li>03</li>
-  <li>04</li>
-  <li>05</li>
-  <li>06</li>
-  <li>07</li>
-  <li>08</li>
-  <li>09</li>
-  <li>10</li>
-  <li>11</li>
-  <li>12</li>
-  <li>13</li>
-  <li>14</li>
-  <li>15</li>
-  <li>16</li>
-  <li>17</li>
-  <li>18</li>
-  <li>19</li>
-  <li>20</li>
-  <li>21</li>
-  <li>22</li>
-  <li>23</li>
-  <li>24</li>
-  <li>25</li>
-  <li>26</li>
-
-</ul>
-
-<ul id="test2">
-
-  <li data-hist="1.1">Alabama</li>
-  <li data-hist="1.2">Alaska</li>
-  <li data-hist="1.3">Arizona</li>
-  <li data-hist="2.1">Arkansas</li>
-  <li data-hist="2.4">California</li>
-  <li data-hist="2.8">Colorado</li>
-  <li data-hist="2.9">Connecticut</li>
-
-</ul>
-
-<ul id="test3">
-  <li>1</li>
-  <li>2</li>
-  <li>3</li>
-  <li>4</li>
-  <li>5</li>
-  <li>6</li>
-  <li>7</li>
-  <li>8</li>
-  <li>9</li>
-  <li>10</li>
-  <li>11</li>
-  <li>12</li>
-  <li>13</li>
-  <li>14</li>
-  <li>15</li>
-  <li>16</li>
-  <li>17</li>
-  <li>18</li>
-  <li>19</li>
-  <li>20</li>
-</ul>
-
-
-<script>
-  $(function(){
-
-    $("#test1 li").heatmapper();
-
-    $("#test2 li").heatmapper({
-      readValue : function(e) {
-        return $(e).attr("data-hist");
-      }
-    });
-
-    $("#test3 li").heatmapper({
-      colorArray : [ 
-        "#000000",
-        "#bb0000",
-        "#ffff00"
-      ]
-    });
-
-
+  $("#rtable td").heatmapper({
+    preMin : 1,
+    centerVal : 1,
+    colorArray : [
+     "#FF6060",
+     "#FBFBFB",
+     "#40FF40"
+    ]
   });
+  
+  $("#rtable th").heatmapper({
+    readValue: function(e) {
+      var v=$(e).text();
+      if (/\((.+)\)/.test(v))
+         return /\((.+)\)/.exec(v)[1];
+         else return 0;
+    },
+    colorArray : [
+     "#CCD5DC",
+     "#6080FF"
+    ]
+   });
+});
+
 </script>
+</head>
+<body>
+<h3>NCBI's nr (di)aminoacid frequencies : odd ratios p(XY)/(p(X)*p(Y))</h3>
+<table id="rtable" class="ftable">
+<tr><th>aa</th><th><b>A</b></th><th><b>R</b></th><th><b>N</b></th><th><b>D</b></th><th><b>C</b></th><th><b>E</b></th><th><b>Q</b></th><th><b>G</b></th><th><b>H</b></th><th><b>I</b></th><th><b>L</b></th><th><b>K</b></th><th><b>M</b></th><th><b>F</b></th><th><b>P</b></th><th><b>S</b></th><th><b>T</b></th><th><b>W</b></th><th><b>Y</b></th><th><b>V</b></th></tr>
+<tr><th><b>A</b>&nbsp;(9.295853)</th><td>1.26996</td><td>1.01496</td><td>0.79881</td><td>0.97874</td><td>0.95033</td><td>0.99028</td><td>0.97457</td><td>1.08831</td><td>0.90806</td><td>0.93439</td><td>1.05984</td><td>0.85132</td><td>1.05546</td><td>0.93197</td><td>0.92070</td><td>0.92349</td><td>0.95150</td><td>0.96768</td><td>0.85115</td><td>1.05347</td></tr>
+<tr><th><b>R</b>&nbsp;(5.784118)</th><td>0.95153</td><td>1.28923</td><td>0.91991</td><td>0.98176</td><td>0.96223</td><td>1.03683</td><td>1.06395</td><td>0.86850</td><td>1.12326</td><td>0.99631</td><td>1.04985</td><td>0.97135</td><td>1.01397</td><td>1.03116</td><td>0.96925</td><td>0.90937</td><td>0.92356</td><td>1.13673</td><td>1.06666</td><td>0.94974</td></tr>
+<tr><th><b>N</b>&nbsp;(3.845347)</th><td>0.85375</td><td>0.87393</td><td>1.31192</td><td>0.94186</td><td>1.02713</td><td>0.92454</td><td>1.01718</td><td>1.03740</td><td>0.98085</td><td>1.14743</td><td>0.95402</td><td>1.08032</td><td>1.01098</td><td>1.02740</td><td>1.11456</td><td>0.98874</td><td>0.99092</td><td>1.04355</td><td>1.15117</td><td>0.93040</td></tr>
+<tr><th><b>D</b>&nbsp;(5.499897)</th><td>0.99077</td><td>0.96816</td><td>0.93230</td><td>1.08605</td><td>0.93622</td><td>1.12097</td><td>0.84127</td><td>1.07052</td><td>0.93852</td><td>1.05904</td><td>0.97525</td><td>0.95230</td><td>0.97295</td><td>1.07705</td><td>1.05093</td><td>0.89276</td><td>0.89998</td><td>1.12655</td><td>1.12646</td><td>1.01347</td></tr>
+<tr><th><b>C</b>&nbsp;(1.210151)</th><td>0.85259</td><td>1.02616</td><td>0.97710</td><td>0.98942</td><td>1.69898</td><td>0.89112</td><td>0.94944</td><td>1.17134</td><td>1.22317</td><td>0.94263</td><td>0.96274</td><td>0.90718</td><td>0.89801</td><td>1.06712</td><td>1.06188</td><td>1.12142</td><td>0.95664</td><td>1.04848</td><td>1.02938</td><td>0.95530</td></tr>
+<tr><th><b>E</b>&nbsp;(6.186572)</th><td>0.97572</td><td>1.12794</td><td>1.10840</td><td>0.96548</td><td>0.84843</td><td>1.25226</td><td>1.16016</td><td>0.83723</td><td>1.01760</td><td>1.07156</td><td>1.00165</td><td>1.27735</td><td>1.06797</td><td>0.87248</td><td>0.81573</td><td>0.83428</td><td>0.94107</td><td>0.92664</td><td>0.92654</td><td>0.95220</td></tr>
+<tr><th><b>Q</b>&nbsp;(3.907592)</th><td>1.01707</td><td>1.10493</td><td>1.01590</td><td>0.83698</td><td>0.88611</td><td>0.96591</td><td>1.56745</td><td>0.86854</td><td>1.11751</td><td>0.99127</td><td>1.02963</td><td>1.04223</td><td>1.04792</td><td>0.87903</td><td>1.01243</td><td>0.91121</td><td>0.94903</td><td>1.04231</td><td>0.96742</td><td>0.95283</td></tr>
+<tr><th><b>G</b>&nbsp;(7.351111)</th><td>0.95741</td><td>1.01695</td><td>0.96158</td><td>0.95679</td><td>1.02932</td><td>0.93348</td><td>0.92690</td><td>1.13034</td><td>1.00841</td><td>1.04301</td><td>0.95603</td><td>1.02930</td><td>1.10912</td><td>1.07903</td><td>0.78473</td><td>0.99956</td><td>1.03112</td><td>1.18935</td><td>1.11106</td><td>1.03618</td></tr>
+<tr><th><b>H</b>&nbsp;(2.224133)</th><td>0.90320</td><td>1.07216</td><td>0.89743</td><td>0.93972</td><td>1.27919</td><td>0.86370</td><td>1.06714</td><td>1.03231</td><td>1.48628</td><td>0.96409</td><td>1.03883</td><td>0.80224</td><td>0.89241</td><td>1.11680</td><td>1.26150</td><td>0.96148</td><td>0.91915</td><td>1.13439</td><td>1.16340</td><td>0.91675</td></tr>
+<tr><th><b>I</b>&nbsp;(5.517788)</th><td>1.00331</td><td>0.89087</td><td>1.13392</td><td>1.11109</td><td>1.11588</td><td>1.03994</td><td>0.88738</td><td>1.01449</td><td>0.95748</td><td>1.03653</td><td>0.90661</td><td>1.04388</td><td>0.90019</td><td>1.01153</td><td>0.98424</td><td>1.04558</td><td>1.04582</td><td>0.83661</td><td>1.02099</td><td>0.99095</td></tr>
+<tr><th><b>L</b>&nbsp;(9.942876)</th><td>1.06977</td><td>1.02154</td><td>0.98044</td><td>1.00917</td><td>1.02362</td><td>0.94824</td><td>0.98060</td><td>0.95149</td><td>0.99707</td><td>0.93232</td><td>1.03855</td><td>1.00648</td><td>0.96675</td><td>0.98846</td><td>1.07589</td><td>1.05854</td><td>1.01325</td><td>0.88109</td><td>0.89361</td><td>0.96175</td></tr>
+<tr><th><b>K</b>&nbsp;(4.903067)</th><td>0.87901</td><td>0.97184</td><td>1.23267</td><td>1.01382</td><td>0.84320</td><td>1.19439</td><td>1.07487</td><td>0.83540</td><td>0.94369</td><td>1.10010</td><td>0.92472</td><td>1.46662</td><td>0.98838</td><td>0.81042</td><td>0.94026</td><td>0.92150</td><td>1.01349</td><td>0.87618</td><td>1.05640</td><td>0.93489</td></tr>
+<tr><th><b>M</b>&nbsp;(2.057090)</th><td>1.02059</td><td>0.98025</td><td>1.04724</td><td>0.95874</td><td>0.87833</td><td>0.95843</td><td>1.02508</td><td>0.95303</td><td>0.94627</td><td>1.04169</td><td>1.04832</td><td>1.04068</td><td>1.31448</td><td>0.90968</td><td>1.05072</td><td>0.95411</td><td>1.04752</td><td>0.80593</td><td>0.84078</td><td>1.02088</td></tr>
+<tr><th><b>F</b>&nbsp;(3.841852)</th><td>0.91569</td><td>0.85000</td><td>1.08466</td><td>1.13300</td><td>1.18753</td><td>0.91768</td><td>0.85212</td><td>1.07465</td><td>0.99362</td><td>1.05552</td><td>0.96010</td><td>0.90793</td><td>0.95556</td><td>1.16886</td><td>0.86643</td><td>1.13438</td><td>1.03781</td><td>1.08753</td><td>1.13690</td><td>0.98912</td></tr>
+<tr><th><b>P</b>&nbsp;(4.956347)</th><td>1.05966</td><td>0.88161</td><td>0.87961</td><td>1.09253</td><td>0.82985</td><td>1.13119</td><td>1.00178</td><td>1.04633</td><td>0.99469</td><td>0.83120</td><td>0.93765</td><td>0.84469</td><td>0.87620</td><td>0.96465</td><td>1.22251</td><td>1.05813</td><td>0.98670</td><td>0.97044</td><td>0.93956</td><td>1.09812</td></tr>
+<tr><th><b>S</b>&nbsp;(6.751608)</th><td>0.91124</td><td>0.93317</td><td>0.98711</td><td>0.95088</td><td>1.04017</td><td>0.88943</td><td>0.96498</td><td>1.08905</td><td>0.97926</td><td>0.97470</td><td>1.00045</td><td>0.93257</td><td>0.97016</td><td>1.06886</td><td>1.05219</td><td>1.26243</td><td>1.01881</td><td>1.01275</td><td>0.99778</td><td>0.97039</td></tr>
+<tr><th><b>T</b>&nbsp;(5.605526)</th><td>1.01269</td><td>0.86948</td><td>0.92026</td><td>0.95800</td><td>0.95841</td><td>0.89508</td><td>0.89004</td><td>1.10882</td><td>0.94495</td><td>1.00387</td><td>1.03696</td><td>0.84798</td><td>0.93762</td><td>0.98912</td><td>1.20110</td><td>1.01385</td><td>1.10600</td><td>0.97184</td><td>0.96349</td><td>1.10820</td></tr>
+<tr><th><b>W</b>&nbsp;(1.301129)</th><td>0.82931</td><td>1.19725</td><td>1.08818</td><td>0.92974</td><td>1.07573</td><td>0.83660</td><td>1.26032</td><td>0.88063</td><td>1.11760</td><td>0.95847</td><td>1.18665</td><td>0.98769</td><td>1.19042</td><td>1.06591</td><td>0.83958</td><td>0.97768</td><td>0.99967</td><td>1.37034</td><td>0.99848</td><td>0.89714</td></tr>
+<tr><th><b>Y</b>&nbsp;(2.898208)</th><td>0.84722</td><td>1.06313</td><td>1.11176</td><td>1.05805</td><td>1.18408</td><td>0.92309</td><td>1.10575</td><td>1.00955</td><td>1.06306</td><td>0.95807</td><td>1.01286</td><td>0.96452</td><td>0.91413</td><td>1.19166</td><td>0.93771</td><td>0.98406</td><td>0.97396</td><td>1.08952</td><td>1.25862</td><td>0.91533</td></tr>
+<tr><th><b>V</b>&nbsp;(6.895362)</th><td>1.03208</td><td>0.97220</td><td>0.96114</td><td>1.03948</td><td>1.05041</td><td>0.98952</td><td>0.87659</td><td>0.93142</td><td>0.92475</td><td>1.00952</td><td>1.01743</td><td>0.93412</td><td>1.02864</td><td>1.00145</td><td>1.00832</td><td>1.00373</td><td>1.08411</td><td>0.93799</td><td>0.92482</td><td>1.11995</td></tr>
+</table>
+
+
+
 </body>
 </html>

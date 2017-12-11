@@ -44,14 +44,14 @@ which tells the plug-in how to retrieve the numeric value.
 You can also pass in a color scheme as an array. Low order colors correspond to low values.  
 High order values correspond to high values.
 
-    <table id="myTable">
+    <table id="mytable">
         <tr><td>2.59</td><td>0.68</td><td>1.35</td><td>1.35</td><td>2.03</td><td>1.60</td></tr>
         <tr><td>1.39</td><td>0.70</td><td>-1.22</td><td>1.08</td><td>-1.00</td><td>-2.12</td></tr>
         <tr><td>2.87</td><td>0.59</td><td>1.22</td><td>-0.57</td><td>1.08</td><td>3.00</td></tr>
         <tr><td>0.99</td><td>0.25</td><td>0.48</td><td>0.50</td><td>0.99</td><td>-1.77</td></tr>
     </table>
 
-    $("#myTable td").heatmapper({
+    $("#mytable td").heatmapper({
         colorArray : [ 
             "#63BE7B",
             "#FBE983",
@@ -66,7 +66,7 @@ around a neutral value. For example if we have negative and positive values and 
 values to be shaded in red and positive values shaded in green, this can be accomplished by using 
 3 colors in colorArray, with the "neutral" color in the middle (usually a light gray color).
 
-    $("#myTable td").heatmapper({
+    $("#mytable td").heatmapper({
       centerVal : 0,
       colorArray : [
        "#FF4040",
@@ -75,5 +75,21 @@ values to be shaded in red and positive values shaded in green, this can be acco
       ]
     });
 
-Another example: for presenting ratio values ```centerVal``` would be set to 1.
+**Note:** in order to show a bi-color heatmap for **ratio** values centered around 1, 
+with values >= 1 tinted with one color (e.g. green) and those <=1 shaded with
+a different color (e.g. red), the '''settings.preMin'' value should also be set to 1
+in order to obtain the maximum tinting for the actual minimum value in the data:
+or presenting ratio values ```centerVal``` would be set to 1.
 
+  $("#mytable td").heatmapper({
+    preMin : 1,
+    centerVal : 1,
+    colorArray : [
+     "#FF6060",
+     "#FBFBFB",
+     "#40FF40"
+    ]
+  });
+
+See ''example.html'' for an example of a bicolor heat map for 
+odd-ratio values.
