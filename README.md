@@ -76,20 +76,20 @@ values to be shaded in red and positive values shaded in green, this can be acco
     });
 
 **Note:** in order to show a bi-color heatmap for **ratio** values centered around 1, 
-with values >= 1 tinted with one color (e.g. green) and those <=1 shaded with
+with values >= 1 tinted with one color (e.g. green) and those < 1 shaded with
 a different color (e.g. red), the '''settings.preMin'' value should also be set to 1
 in order to obtain the maximum tinting for the actual minimum value in the data:
 or presenting ratio values ```centerVal``` would be set to 1.
 
-  $("#mytable td").heatmapper({
-    preMin : 1,
-    centerVal : 1,
-    colorArray : [
-     "#FF6060",
-     "#FBFBFB",
-     "#40FF40"
-    ]
-  });
+    $("#mytable td").heatmapper({
+      preMin : 1,
+      centerVal : 1,
+      colorArray : [
+        "#FF6060",
+        "#FBFBFB",
+        "#40FF40"
+      ]
+    });
 
 See ''example.html'' for an example of a bicolor heat map for 
 odd-ratio values.
